@@ -1,0 +1,1242 @@
+user=> (graph/process-graph {0 ["P" true [1, 3, 5]] 1 ["bP" true [2, 0, 4]] 2 ["bbP" true [3, 1, nil]] 3 ["bbbP" true [0, 2, nil]] 4 ["aaP" true [1, 5, nil]] 5 ["aP" true [4, 0, nil]] } "ba" [["aaaa", ""] ["bbbb", ""] ["abP", "P"]] )
+TRACE t17358: (cljs-polytopes.graph/process-graph {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 2 ["bbP" true [3 1 nil]], 3 ["bbbP" true [0 2 nil]], 4 ["aaP" true [1 5 nil]], 5 ["aP" true [4 0 nil]]} "ba" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17359: | (cljs-polytopes.graph/transform-reduce-and-merge-graph [["aaaa" ""] ["bbbb" ""] ["abP" "P"]] {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 2 ["bbP" true [3 1 nil]], 3 ["bbbP" true [0 2 nil]], 4 ["aaP" true [1 5 nil]], 5 ["aP" true [4 0 nil]]} \b)
+TRACE t17360: | | (cljs-polytopes.graph/transform-and-reduce-graph {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 2 ["bbP" true [3 1 nil]], 3 ["bbbP" true [0 2 nil]], 4 ["aaP" true [1 5 nil]], 5 ["aP" true [4 0 nil]]} \b [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17361: | | | (cljs-polytopes.graph/duplicate-and-transform-graph {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 2 ["bbP" true [3 1 nil]], 3 ["bbbP" true [0 2 nil]], 4 ["aaP" true [1 5 nil]], 5 ["aP" true [4 0 nil]]} \b)
+TRACE t17361: | | | => {0 ["P" true [1 3 5]], 7 ["bbP" true [8 6 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [7 9 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 6 nil]], 9 ["bbbbP" true [6 8 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [7 11 nil]], 8 ["bbbP" true [9 7 nil]]}
+TRACE t17362: | | | (cljs-polytopes.graph/apply-word-rules "baP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17363: | | | | (cljs-polytopes.graph/apply-word-rules "baP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17364: | | | | | (cljs-polytopes.graph/apply-word-rules "baP" (["abP" "P"]))
+TRACE t17365: | | | | | | (cljs-polytopes.graph/apply-word-rules "baP" nil)
+TRACE t17365: | | | | | | => "baP"
+TRACE t17364: | | | | | => "baP"
+TRACE t17363: | | | | => "baP"
+TRACE t17362: | | | => "baP"
+TRACE t17366: | | | (cljs-polytopes.graph/apply-word-rules "baaP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17367: | | | | (cljs-polytopes.graph/apply-word-rules "baaP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17368: | | | | | (cljs-polytopes.graph/apply-word-rules "baaP" (["abP" "P"]))
+TRACE t17369: | | | | | | (cljs-polytopes.graph/apply-word-rules "baaP" nil)
+TRACE t17369: | | | | | | => "baaP"
+TRACE t17368: | | | | | => "baaP"
+TRACE t17367: | | | | => "baaP"
+TRACE t17366: | | | => "baaP"
+TRACE t17370: | | | (cljs-polytopes.graph/apply-word-rules "bbbbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17371: | | | | (cljs-polytopes.graph/apply-word-rules "bbbbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17372: | | | | | (cljs-polytopes.graph/apply-word-rules "P" (["bbbb" ""] ["abP" "P"]))
+TRACE t17373: | | | | | | (cljs-polytopes.graph/apply-word-rules "P" (["abP" "P"]))
+TRACE t17374: | | | | | | | (cljs-polytopes.graph/apply-word-rules "P" nil)
+TRACE t17374: | | | | | | | => "P"
+TRACE t17373: | | | | | | => "P"
+TRACE t17372: | | | | | => "P"
+TRACE t17371: | | | | => "P"
+TRACE t17370: | | | => "P"
+TRACE t17375: | | | (cljs-polytopes.graph/apply-word-rules "bbbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17376: | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17377: | | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" (["abP" "P"]))
+TRACE t17378: | | | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" nil)
+TRACE t17378: | | | | | | => "bbbP"
+TRACE t17377: | | | | | => "bbbP"
+TRACE t17376: | | | | => "bbbP"
+TRACE t17375: | | | => "bbbP"
+TRACE t17379: | | | (cljs-polytopes.graph/apply-word-rules "bbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17380: | | | | (cljs-polytopes.graph/apply-word-rules "bbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17381: | | | | | (cljs-polytopes.graph/apply-word-rules "bbP" (["abP" "P"]))
+TRACE t17382: | | | | | | (cljs-polytopes.graph/apply-word-rules "bbP" nil)
+TRACE t17382: | | | | | | => "bbP"
+TRACE t17381: | | | | | => "bbP"
+TRACE t17380: | | | | => "bbP"
+TRACE t17379: | | | => "bbP"
+TRACE t17383: | | | (cljs-polytopes.graph/apply-word-rules "bP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17384: | | | | (cljs-polytopes.graph/apply-word-rules "bP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17385: | | | | | (cljs-polytopes.graph/apply-word-rules "bP" (["abP" "P"]))
+TRACE t17386: | | | | | | (cljs-polytopes.graph/apply-word-rules "bP" nil)
+TRACE t17386: | | | | | | => "bP"
+TRACE t17385: | | | | | => "bP"
+TRACE t17384: | | | | => "bP"
+TRACE t17383: | | | => "bP"
+TRACE t17387: | | | (cljs-polytopes.graph/apply-word-rules "aP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17388: | | | | (cljs-polytopes.graph/apply-word-rules "aP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17389: | | | | | (cljs-polytopes.graph/apply-word-rules "aP" (["abP" "P"]))
+TRACE t17390: | | | | | | (cljs-polytopes.graph/apply-word-rules "aP" nil)
+TRACE t17390: | | | | | | => "aP"
+TRACE t17389: | | | | | => "aP"
+TRACE t17388: | | | | => "aP"
+TRACE t17387: | | | => "aP"
+TRACE t17391: | | | (cljs-polytopes.graph/apply-word-rules "aaP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17392: | | | | (cljs-polytopes.graph/apply-word-rules "aaP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17393: | | | | | (cljs-polytopes.graph/apply-word-rules "aaP" (["abP" "P"]))
+TRACE t17394: | | | | | | (cljs-polytopes.graph/apply-word-rules "aaP" nil)
+TRACE t17394: | | | | | | => "aaP"
+TRACE t17393: | | | | | => "aaP"
+TRACE t17392: | | | | => "aaP"
+TRACE t17391: | | | => "aaP"
+TRACE t17395: | | | (cljs-polytopes.graph/apply-word-rules "bbbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17396: | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17397: | | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" (["abP" "P"]))
+TRACE t17398: | | | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" nil)
+TRACE t17398: | | | | | | => "bbbP"
+TRACE t17397: | | | | | => "bbbP"
+TRACE t17396: | | | | => "bbbP"
+TRACE t17395: | | | => "bbbP"
+TRACE t17399: | | | (cljs-polytopes.graph/apply-word-rules "bbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17400: | | | | (cljs-polytopes.graph/apply-word-rules "bbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17401: | | | | | (cljs-polytopes.graph/apply-word-rules "bbP" (["abP" "P"]))
+TRACE t17402: | | | | | | (cljs-polytopes.graph/apply-word-rules "bbP" nil)
+TRACE t17402: | | | | | | => "bbP"
+TRACE t17401: | | | | | => "bbP"
+TRACE t17400: | | | | => "bbP"
+TRACE t17399: | | | => "bbP"
+TRACE t17403: | | | (cljs-polytopes.graph/apply-word-rules "bP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17404: | | | | (cljs-polytopes.graph/apply-word-rules "bP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17405: | | | | | (cljs-polytopes.graph/apply-word-rules "bP" (["abP" "P"]))
+TRACE t17406: | | | | | | (cljs-polytopes.graph/apply-word-rules "bP" nil)
+TRACE t17406: | | | | | | => "bP"
+TRACE t17405: | | | | | => "bP"
+TRACE t17404: | | | | => "bP"
+TRACE t17403: | | | => "bP"
+TRACE t17407: | | | (cljs-polytopes.graph/apply-word-rules "P" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17408: | | | | (cljs-polytopes.graph/apply-word-rules "P" (["bbbb" ""] ["abP" "P"]))
+TRACE t17409: | | | | | (cljs-polytopes.graph/apply-word-rules "P" (["abP" "P"]))
+TRACE t17410: | | | | | | (cljs-polytopes.graph/apply-word-rules "P" nil)
+TRACE t17410: | | | | | | => "P"
+TRACE t17409: | | | | | => "P"
+TRACE t17408: | | | | => "P"
+TRACE t17407: | | | => "P"
+TRACE t17360: | | => [{0 ["P" true [1 3 5]], 7 ["bbP" true [8 6 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [7 9 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 6 nil]], 9 ["bbbbP" true [6 8 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [7 11 nil]], 8 ["bbbP" true [9 7 nil]]} {9 0, 8 3, 7 2, 6 1}]
+TRACE t17411: | | (cljs-polytopes.graph/flatten-equivalence-table {9 0, 8 3, 7 2, 6 1})
+TRACE t17411: | | => {9 0, 8 3, 7 2, 6 1}
+TRACE t17412: | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 7 ["bbP" true [8 6 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [7 9 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 6 nil]], 9 ["bbbbP" true [6 8 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [7 11 nil]], 8 ["bbbP" true [9 7 nil]]} {9 0, 8 3, 7 2, 6 1}] [9 0])
+TRACE t17413: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 6)
+TRACE t17413: | | | => 1
+TRACE t17414: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 8)
+TRACE t17414: | | | => 3
+TRACE t17415: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17415: | | | => nil
+TRACE t17416: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17416: | | | => 1
+TRACE t17417: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17417: | | | => 3
+TRACE t17418: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 5)
+TRACE t17418: | | | => 5
+TRACE t17419: | | | (cljs-polytopes.graph/common-cycle [true [1 3 nil]] [true [1 3 5]])
+TRACE t17420: | | | | (cljs-polytopes.graph/-index-of [1 3 nil] 1)
+TRACE t17420: | | | | => 0
+TRACE t17421: | | | | (cljs-polytopes.graph/-index-of [1 3 5] 1)
+TRACE t17421: | | | | => 0
+TRACE t17422: | | | | (cljs-polytopes.graph/pair-induction [1 1])
+TRACE t17422: | | | | => [1 1]
+TRACE t17423: | | | | (cljs-polytopes.graph/pair-induction [3 3])
+TRACE t17423: | | | | => [3 3]
+TRACE t17424: | | | | (cljs-polytopes.graph/pair-induction [nil 5])
+TRACE t17424: | | | | => [5 5]
+TRACE t17419: | | | => [true ([1 1] [3 3] [5 5])]
+TRACE t17425: | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 7 ["bbP" true [8 6 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [7 9 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 6 nil]], 9 ["bbbbP" true [6 8 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [7 11 nil]], 8 ["bbbP" true [9 7 nil]]} {9 0, 8 3, 7 2, 6 1})
+TRACE t17426: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17426: | | | | => 1
+TRACE t17427: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17427: | | | | => 3
+TRACE t17428: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 5)
+TRACE t17428: | | | | => 5
+TRACE t17429: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 8)
+TRACE t17429: | | | | => 3
+TRACE t17430: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 6)
+TRACE t17430: | | | | => 1
+TRACE t17431: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 10)
+TRACE t17431: | | | | => 10
+TRACE t17432: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17432: | | | | => 2
+TRACE t17433: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17433: | | | | => 0
+TRACE t17434: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 4)
+TRACE t17434: | | | | => 4
+TRACE t17435: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17435: | | | | => 1
+TRACE t17436: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 5)
+TRACE t17436: | | | | => 5
+TRACE t17437: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17437: | | | | => nil
+TRACE t17438: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 7)
+TRACE t17438: | | | | => 2
+TRACE t17439: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 9)
+TRACE t17439: | | | | => 0
+TRACE t17440: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 11)
+TRACE t17440: | | | | => 11
+TRACE t17441: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17441: | | | | => 0
+TRACE t17442: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17442: | | | | => 2
+TRACE t17443: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17443: | | | | => nil
+TRACE t17444: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17444: | | | | => 3
+TRACE t17445: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17445: | | | | => 1
+TRACE t17446: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17446: | | | | => nil
+TRACE t17447: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 10)
+TRACE t17447: | | | | => 10
+TRACE t17448: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 6)
+TRACE t17448: | | | | => 1
+TRACE t17449: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17449: | | | | => nil
+TRACE t17450: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 6)
+TRACE t17450: | | | | => 1
+TRACE t17451: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 8)
+TRACE t17451: | | | | => 3
+TRACE t17452: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17452: | | | | => nil
+TRACE t17453: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 4)
+TRACE t17453: | | | | => 4
+TRACE t17454: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17454: | | | | => 0
+TRACE t17455: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17455: | | | | => nil
+TRACE t17456: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 7)
+TRACE t17456: | | | | => 2
+TRACE t17457: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 11)
+TRACE t17457: | | | | => 11
+TRACE t17458: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17458: | | | | => nil
+TRACE t17459: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 9)
+TRACE t17459: | | | | => 0
+TRACE t17460: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 7)
+TRACE t17460: | | | | => 2
+TRACE t17461: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17461: | | | | => nil
+TRACE t17425: | | | => {0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 9 ["bbbbP" true [1 3 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]], 8 ["bbbP" true [0 2 nil]]}
+TRACE t17412: | | => [{0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]], 8 ["bbbP" true [0 2 nil]]} {9 0, 8 3, 7 2, 6 1}]
+TRACE t17462: | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]], 8 ["bbbP" true [0 2 nil]]} {9 0, 8 3, 7 2, 6 1}] [8 3])
+TRACE t17463: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17463: | | | => 0
+TRACE t17464: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17464: | | | => 2
+TRACE t17465: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17465: | | | => nil
+TRACE t17466: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17466: | | | => 0
+TRACE t17467: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17467: | | | => 2
+TRACE t17468: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17468: | | | => nil
+TRACE t17469: | | | (cljs-polytopes.graph/common-cycle [true [0 2 nil]] [true [0 2 nil]])
+TRACE t17470: | | | | (cljs-polytopes.graph/-index-of [0 2 nil] 0)
+TRACE t17470: | | | | => 0
+TRACE t17471: | | | | (cljs-polytopes.graph/-index-of [0 2 nil] 0)
+TRACE t17471: | | | | => 0
+TRACE t17472: | | | | (cljs-polytopes.graph/pair-induction [0 0])
+TRACE t17472: | | | | => [0 0]
+TRACE t17473: | | | | (cljs-polytopes.graph/pair-induction [2 2])
+TRACE t17473: | | | | => [2 2]
+TRACE t17474: | | | | (cljs-polytopes.graph/pair-induction [nil nil])
+TRACE t17474: | | | | => [nil nil]
+TRACE t17469: | | | => [true ([0 0] [2 2])]
+TRACE t17475: | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]], 8 ["bbbP" true [0 2 nil]]} {9 0, 8 3, 7 2, 6 1})
+TRACE t17476: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17476: | | | | => 1
+TRACE t17477: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17477: | | | | => 3
+TRACE t17478: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 5)
+TRACE t17478: | | | | => 5
+TRACE t17479: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17479: | | | | => 3
+TRACE t17480: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17480: | | | | => 1
+TRACE t17481: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 10)
+TRACE t17481: | | | | => 10
+TRACE t17482: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17482: | | | | => 2
+TRACE t17483: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17483: | | | | => 0
+TRACE t17484: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 4)
+TRACE t17484: | | | | => 4
+TRACE t17485: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17485: | | | | => 1
+TRACE t17486: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 5)
+TRACE t17486: | | | | => 5
+TRACE t17487: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17487: | | | | => nil
+TRACE t17488: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17488: | | | | => 2
+TRACE t17489: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17489: | | | | => 0
+TRACE t17490: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 11)
+TRACE t17490: | | | | => 11
+TRACE t17491: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17491: | | | | => 0
+TRACE t17492: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17492: | | | | => 2
+TRACE t17493: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17493: | | | | => nil
+TRACE t17494: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17494: | | | | => 3
+TRACE t17495: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17495: | | | | => 1
+TRACE t17496: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17496: | | | | => nil
+TRACE t17497: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 10)
+TRACE t17497: | | | | => 10
+TRACE t17498: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17498: | | | | => 1
+TRACE t17499: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17499: | | | | => nil
+TRACE t17500: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 4)
+TRACE t17500: | | | | => 4
+TRACE t17501: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17501: | | | | => 0
+TRACE t17502: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17502: | | | | => nil
+TRACE t17503: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17503: | | | | => 2
+TRACE t17504: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 11)
+TRACE t17504: | | | | => 11
+TRACE t17505: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17505: | | | | => nil
+TRACE t17506: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17506: | | | | => 0
+TRACE t17507: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17507: | | | | => 2
+TRACE t17508: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17508: | | | | => nil
+TRACE t17475: | | | => {0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2 nil]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]], 8 ["bbbP" true [0 2 nil]]}
+TRACE t17462: | | => [{0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]} {9 0, 8 3, 7 2, 6 1}]
+TRACE t17509: | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]} {9 0, 8 3, 7 2, 6 1}] [7 2])
+TRACE t17510: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17510: | | | => 3
+TRACE t17511: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17511: | | | => 1
+TRACE t17512: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 10)
+TRACE t17512: | | | => 10
+TRACE t17513: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17513: | | | => 3
+TRACE t17514: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17514: | | | => 1
+TRACE t17515: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17515: | | | => nil
+TRACE t17516: | | | (cljs-polytopes.graph/common-cycle [true [3 1 10]] [true [3 1 nil]])
+TRACE t17517: | | | | (cljs-polytopes.graph/-index-of [3 1 10] 1)
+TRACE t17517: | | | | => 1
+TRACE t17518: | | | | (cljs-polytopes.graph/-index-of [3 1 nil] 1)
+TRACE t17518: | | | | => 1
+TRACE t17519: | | | | (cljs-polytopes.graph/pair-induction [1 1])
+TRACE t17519: | | | | => [1 1]
+TRACE t17520: | | | | (cljs-polytopes.graph/pair-induction [10 nil])
+TRACE t17520: | | | | => [10 10]
+TRACE t17521: | | | | (cljs-polytopes.graph/pair-induction [3 3])
+TRACE t17521: | | | | => [3 3]
+TRACE t17516: | | | => [true ([1 1] [10 10] [3 3])]
+TRACE t17522: | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]} {9 0, 8 3, 7 2, 6 1})
+TRACE t17523: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17523: | | | | => 1
+TRACE t17524: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17524: | | | | => 3
+TRACE t17525: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 5)
+TRACE t17525: | | | | => 5
+TRACE t17526: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17526: | | | | => 3
+TRACE t17527: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17527: | | | | => 1
+TRACE t17528: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 10)
+TRACE t17528: | | | | => 10
+TRACE t17529: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17529: | | | | => 2
+TRACE t17530: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17530: | | | | => 0
+TRACE t17531: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 4)
+TRACE t17531: | | | | => 4
+TRACE t17532: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17532: | | | | => 1
+TRACE t17533: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 5)
+TRACE t17533: | | | | => 5
+TRACE t17534: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17534: | | | | => nil
+TRACE t17535: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17535: | | | | => 2
+TRACE t17536: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17536: | | | | => 0
+TRACE t17537: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 11)
+TRACE t17537: | | | | => 11
+TRACE t17538: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17538: | | | | => 0
+TRACE t17539: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17539: | | | | => 2
+TRACE t17540: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 3)
+TRACE t17540: | | | | => 3
+TRACE t17541: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17541: | | | | => 1
+TRACE t17542: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17542: | | | | => nil
+TRACE t17543: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 10)
+TRACE t17543: | | | | => 10
+TRACE t17544: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 1)
+TRACE t17544: | | | | => 1
+TRACE t17545: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17545: | | | | => nil
+TRACE t17546: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 4)
+TRACE t17546: | | | | => 4
+TRACE t17547: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17547: | | | | => 0
+TRACE t17548: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17548: | | | | => nil
+TRACE t17549: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17549: | | | | => 2
+TRACE t17550: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 11)
+TRACE t17550: | | | | => 11
+TRACE t17551: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} nil)
+TRACE t17551: | | | | => nil
+TRACE t17522: | | | => {0 ["P" true [1 3 5]], 7 ["bbP" true [3 1 10]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [3 1 nil]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]}
+TRACE t17509: | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]} {9 0, 8 3, 7 2, 6 1}]
+TRACE t17552: | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]} {9 0, 8 3, 7 2, 6 1}] [6 1])
+TRACE t17553: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17553: | | | => 2
+TRACE t17554: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17554: | | | => 0
+TRACE t17555: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 11)
+TRACE t17555: | | | => 11
+TRACE t17556: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 2)
+TRACE t17556: | | | => 2
+TRACE t17557: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 0)
+TRACE t17557: | | | => 0
+TRACE t17558: | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1} 4)
+TRACE t17558: | | | => 4
+TRACE t17559: | | | (cljs-polytopes.graph/common-cycle [true [2 0 11]] [true [2 0 4]])
+TRACE t17560: | | | | (cljs-polytopes.graph/-index-of [2 0 11] 0)
+TRACE t17560: | | | | => 1
+TRACE t17561: | | | | (cljs-polytopes.graph/-index-of [2 0 4] 0)
+TRACE t17561: | | | | => 1
+TRACE t17562: | | | | (cljs-polytopes.graph/pair-induction [0 0])
+TRACE t17562: | | | | => [0 0]
+TRACE t17563: | | | | (cljs-polytopes.graph/pair-induction [11 4])
+TRACE t17563: | | | | => [11 4]
+TRACE t17564: | | | | (cljs-polytopes.graph/pair-induction [2 2])
+TRACE t17564: | | | | => [2 2]
+TRACE t17559: | | | => [true ([0 0] [11 4] [2 2])]
+TRACE t17565: | | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]} {9 0, 8 3, 7 2, 6 1, 11 4}] [11 4])
+TRACE t17566: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 10)
+TRACE t17566: | | | | => 10
+TRACE t17567: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17567: | | | | => 1
+TRACE t17568: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17568: | | | | => nil
+TRACE t17569: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17569: | | | | => 1
+TRACE t17570: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 5)
+TRACE t17570: | | | | => 5
+TRACE t17571: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17571: | | | | => nil
+TRACE t17572: | | | | (cljs-polytopes.graph/common-cycle [true [10 1 nil]] [true [1 5 nil]])
+TRACE t17573: | | | | | (cljs-polytopes.graph/-index-of [10 1 nil] 1)
+TRACE t17573: | | | | | => 1
+TRACE t17574: | | | | | (cljs-polytopes.graph/-index-of [1 5 nil] 1)
+TRACE t17574: | | | | | => 0
+TRACE t17575: | | | | | (cljs-polytopes.graph/pair-induction [1 1])
+TRACE t17575: | | | | | => [1 1]
+TRACE t17576: | | | | | (cljs-polytopes.graph/pair-induction [nil 5])
+TRACE t17576: | | | | | => [5 5]
+TRACE t17577: | | | | | (cljs-polytopes.graph/pair-induction [10 nil])
+TRACE t17577: | | | | | => [10 10]
+TRACE t17572: | | | | => [true ([1 1] [5 5] [10 10])]
+TRACE t17578: | | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 11]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 11 nil]]} {9 0, 8 3, 7 2, 6 1, 11 4})
+TRACE t17579: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17579: | | | | | => 1
+TRACE t17580: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 3)
+TRACE t17580: | | | | | => 3
+TRACE t17581: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 5)
+TRACE t17581: | | | | | => 5
+TRACE t17582: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17582: | | | | | => 2
+TRACE t17583: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17583: | | | | | => 0
+TRACE t17584: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 4)
+TRACE t17584: | | | | | => 4
+TRACE t17585: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17585: | | | | | => 1
+TRACE t17586: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 5)
+TRACE t17586: | | | | | => 5
+TRACE t17587: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17587: | | | | | => nil
+TRACE t17588: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17588: | | | | | => 2
+TRACE t17589: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17589: | | | | | => 0
+TRACE t17590: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 11)
+TRACE t17590: | | | | | => 4
+TRACE t17591: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17591: | | | | | => 0
+TRACE t17592: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17592: | | | | | => 2
+TRACE t17593: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17593: | | | | | => 1
+TRACE t17594: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 10)
+TRACE t17594: | | | | | => 10
+TRACE t17595: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 3)
+TRACE t17595: | | | | | => 3
+TRACE t17596: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 10)
+TRACE t17596: | | | | | => 10
+TRACE t17597: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17597: | | | | | => 1
+TRACE t17598: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17598: | | | | | => nil
+TRACE t17599: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 4)
+TRACE t17599: | | | | | => 4
+TRACE t17600: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17600: | | | | | => 0
+TRACE t17601: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17601: | | | | | => nil
+TRACE t17602: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17602: | | | | | => 2
+TRACE t17603: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 11)
+TRACE t17603: | | | | | => 4
+TRACE t17604: | | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17604: | | | | | => nil
+TRACE t17578: | | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 nil]], 6 ["bP" true [2 0 4]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["baP" true [10 1 nil]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17565: | | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 10]], 6 ["bP" true [2 0 4]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]} {9 0, 8 3, 7 2, 6 1, 11 4}]
+TRACE t17605: | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 10]], 6 ["bP" true [2 0 4]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]} {9 0, 8 3, 7 2, 6 1, 11 4})
+TRACE t17606: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17606: | | | | => 1
+TRACE t17607: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 3)
+TRACE t17607: | | | | => 3
+TRACE t17608: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 5)
+TRACE t17608: | | | | => 5
+TRACE t17609: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17609: | | | | => 2
+TRACE t17610: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17610: | | | | => 0
+TRACE t17611: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 4)
+TRACE t17611: | | | | => 4
+TRACE t17612: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17612: | | | | => 1
+TRACE t17613: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 5)
+TRACE t17613: | | | | => 5
+TRACE t17614: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 10)
+TRACE t17614: | | | | => 10
+TRACE t17615: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17615: | | | | => 2
+TRACE t17616: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17616: | | | | => 0
+TRACE t17617: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 4)
+TRACE t17617: | | | | => 4
+TRACE t17618: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17618: | | | | => 0
+TRACE t17619: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17619: | | | | => 2
+TRACE t17620: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 1)
+TRACE t17620: | | | | => 1
+TRACE t17621: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 10)
+TRACE t17621: | | | | => 10
+TRACE t17622: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 3)
+TRACE t17622: | | | | => 3
+TRACE t17623: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 4)
+TRACE t17623: | | | | => 4
+TRACE t17624: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 0)
+TRACE t17624: | | | | => 0
+TRACE t17625: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17625: | | | | => nil
+TRACE t17626: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 2)
+TRACE t17626: | | | | => 2
+TRACE t17627: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} 4)
+TRACE t17627: | | | | => 4
+TRACE t17628: | | | | (cljs-polytopes.graph/-get-member-or-index {9 0, 8 3, 7 2, 6 1, 11 4} nil)
+TRACE t17628: | | | | => nil
+TRACE t17605: | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [2 0 4]], 4 ["aaP" true [1 5 10]], 6 ["bP" true [2 0 4]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17552: | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]} {9 0, 8 3, 7 2, 6 1, 11 4}]
+TRACE t17359: | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17629: | (cljs-polytopes.graph/transform-reduce-and-merge-graph [["aaaa" ""] ["bbbb" ""] ["abP" "P"]] {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]} \a)
+TRACE t17630: | | (cljs-polytopes.graph/transform-and-reduce-graph {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]} \a [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17631: | | | (cljs-polytopes.graph/duplicate-and-transform-graph {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [4 0 nil]], 10 ["baaP" true [2 4 nil]]} \a)
+TRACE t17631: | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17632: | | | (cljs-polytopes.graph/apply-word-rules "abaaP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17633: | | | | (cljs-polytopes.graph/apply-word-rules "abaaP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17634: | | | | | (cljs-polytopes.graph/apply-word-rules "abaaP" (["abP" "P"]))
+TRACE t17635: | | | | | | (cljs-polytopes.graph/apply-word-rules "abaaP" nil)
+TRACE t17635: | | | | | | => "abaaP"
+TRACE t17634: | | | | | => "abaaP"
+TRACE t17633: | | | | => "abaaP"
+TRACE t17632: | | | => "abaaP"
+TRACE t17636: | | | (cljs-polytopes.graph/apply-word-rules "aaP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17637: | | | | (cljs-polytopes.graph/apply-word-rules "aaP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17638: | | | | | (cljs-polytopes.graph/apply-word-rules "aaP" (["abP" "P"]))
+TRACE t17639: | | | | | | (cljs-polytopes.graph/apply-word-rules "aaP" nil)
+TRACE t17639: | | | | | | => "aaP"
+TRACE t17638: | | | | | => "aaP"
+TRACE t17637: | | | | => "aaP"
+TRACE t17636: | | | => "aaP"
+TRACE t17640: | | | (cljs-polytopes.graph/apply-word-rules "aaaP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17641: | | | | (cljs-polytopes.graph/apply-word-rules "aaaP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17642: | | | | | (cljs-polytopes.graph/apply-word-rules "aaaP" (["abP" "P"]))
+TRACE t17643: | | | | | | (cljs-polytopes.graph/apply-word-rules "aaaP" nil)
+TRACE t17643: | | | | | | => "aaaP"
+TRACE t17642: | | | | | => "aaaP"
+TRACE t17641: | | | | => "aaaP"
+TRACE t17640: | | | => "aaaP"
+TRACE t17644: | | | (cljs-polytopes.graph/apply-word-rules "abbbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17645: | | | | (cljs-polytopes.graph/apply-word-rules "abbbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17646: | | | | | (cljs-polytopes.graph/apply-word-rules "abbbP" (["abP" "P"]))
+TRACE t17647: | | | | | | (cljs-polytopes.graph/apply-word-rules "abbbP" nil)
+TRACE t17647: | | | | | | => "abbbP"
+TRACE t17646: | | | | | => "abbbP"
+TRACE t17645: | | | | => "abbbP"
+TRACE t17644: | | | => "abbbP"
+TRACE t17648: | | | (cljs-polytopes.graph/apply-word-rules "abbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17649: | | | | (cljs-polytopes.graph/apply-word-rules "abbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17650: | | | | | (cljs-polytopes.graph/apply-word-rules "abbP" (["abP" "P"]))
+TRACE t17651: | | | | | | (cljs-polytopes.graph/apply-word-rules "abbP" nil)
+TRACE t17651: | | | | | | => "abbP"
+TRACE t17650: | | | | | => "abbP"
+TRACE t17649: | | | | => "abbP"
+TRACE t17648: | | | => "abbP"
+TRACE t17652: | | | (cljs-polytopes.graph/apply-word-rules "abP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17653: | | | | (cljs-polytopes.graph/apply-word-rules "abP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17654: | | | | | (cljs-polytopes.graph/apply-word-rules "abP" (["abP" "P"]))
+TRACE t17655: | | | | | | (cljs-polytopes.graph/apply-word-rules "P" (["abP" "P"]))
+TRACE t17656: | | | | | | | (cljs-polytopes.graph/apply-word-rules "P" nil)
+TRACE t17656: | | | | | | | => "P"
+TRACE t17655: | | | | | | => "P"
+TRACE t17654: | | | | | => "P"
+TRACE t17653: | | | | => "P"
+TRACE t17652: | | | => "P"
+TRACE t17657: | | | (cljs-polytopes.graph/apply-word-rules "aP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17658: | | | | (cljs-polytopes.graph/apply-word-rules "aP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17659: | | | | | (cljs-polytopes.graph/apply-word-rules "aP" (["abP" "P"]))
+TRACE t17660: | | | | | | (cljs-polytopes.graph/apply-word-rules "aP" nil)
+TRACE t17660: | | | | | | => "aP"
+TRACE t17659: | | | | | => "aP"
+TRACE t17658: | | | | => "aP"
+TRACE t17657: | | | => "aP"
+TRACE t17661: | | | (cljs-polytopes.graph/apply-word-rules "baaP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17662: | | | | (cljs-polytopes.graph/apply-word-rules "baaP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17663: | | | | | (cljs-polytopes.graph/apply-word-rules "baaP" (["abP" "P"]))
+TRACE t17664: | | | | | | (cljs-polytopes.graph/apply-word-rules "baaP" nil)
+TRACE t17664: | | | | | | => "baaP"
+TRACE t17663: | | | | | => "baaP"
+TRACE t17662: | | | | => "baaP"
+TRACE t17661: | | | => "baaP"
+TRACE t17665: | | | (cljs-polytopes.graph/apply-word-rules "aP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17666: | | | | (cljs-polytopes.graph/apply-word-rules "aP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17667: | | | | | (cljs-polytopes.graph/apply-word-rules "aP" (["abP" "P"]))
+TRACE t17668: | | | | | | (cljs-polytopes.graph/apply-word-rules "aP" nil)
+TRACE t17668: | | | | | | => "aP"
+TRACE t17667: | | | | | => "aP"
+TRACE t17666: | | | | => "aP"
+TRACE t17665: | | | => "aP"
+TRACE t17669: | | | (cljs-polytopes.graph/apply-word-rules "aaP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17670: | | | | (cljs-polytopes.graph/apply-word-rules "aaP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17671: | | | | | (cljs-polytopes.graph/apply-word-rules "aaP" (["abP" "P"]))
+TRACE t17672: | | | | | | (cljs-polytopes.graph/apply-word-rules "aaP" nil)
+TRACE t17672: | | | | | | => "aaP"
+TRACE t17671: | | | | | => "aaP"
+TRACE t17670: | | | | => "aaP"
+TRACE t17669: | | | => "aaP"
+TRACE t17673: | | | (cljs-polytopes.graph/apply-word-rules "bbbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17674: | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17675: | | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" (["abP" "P"]))
+TRACE t17676: | | | | | | (cljs-polytopes.graph/apply-word-rules "bbbP" nil)
+TRACE t17676: | | | | | | => "bbbP"
+TRACE t17675: | | | | | => "bbbP"
+TRACE t17674: | | | | => "bbbP"
+TRACE t17673: | | | => "bbbP"
+TRACE t17677: | | | (cljs-polytopes.graph/apply-word-rules "bbP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17678: | | | | (cljs-polytopes.graph/apply-word-rules "bbP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17679: | | | | | (cljs-polytopes.graph/apply-word-rules "bbP" (["abP" "P"]))
+TRACE t17680: | | | | | | (cljs-polytopes.graph/apply-word-rules "bbP" nil)
+TRACE t17680: | | | | | | => "bbP"
+TRACE t17679: | | | | | => "bbP"
+TRACE t17678: | | | | => "bbP"
+TRACE t17677: | | | => "bbP"
+TRACE t17681: | | | (cljs-polytopes.graph/apply-word-rules "bP" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17682: | | | | (cljs-polytopes.graph/apply-word-rules "bP" (["bbbb" ""] ["abP" "P"]))
+TRACE t17683: | | | | | (cljs-polytopes.graph/apply-word-rules "bP" (["abP" "P"]))
+TRACE t17684: | | | | | | (cljs-polytopes.graph/apply-word-rules "bP" nil)
+TRACE t17684: | | | | | | => "bP"
+TRACE t17683: | | | | | => "bP"
+TRACE t17682: | | | | => "bP"
+TRACE t17681: | | | => "bP"
+TRACE t17685: | | | (cljs-polytopes.graph/apply-word-rules "P" [["aaaa" ""] ["bbbb" ""] ["abP" "P"]])
+TRACE t17686: | | | | (cljs-polytopes.graph/apply-word-rules "P" (["bbbb" ""] ["abP" "P"]))
+TRACE t17687: | | | | | (cljs-polytopes.graph/apply-word-rules "P" (["abP" "P"]))
+TRACE t17688: | | | | | | (cljs-polytopes.graph/apply-word-rules "P" nil)
+TRACE t17688: | | | | | | => "P"
+TRACE t17687: | | | | | => "P"
+TRACE t17686: | | | | => "P"
+TRACE t17685: | | | => "P"
+TRACE t17630: | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5}]
+TRACE t17689: | | (cljs-polytopes.graph/flatten-equivalence-table {16 4, 12 0, 11 5})
+TRACE t17689: | | => {16 4, 12 0, 11 5}
+TRACE t17690: | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5}] [16 4])
+TRACE t17691: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5} 15)
+TRACE t17691: | | | => 15
+TRACE t17692: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5} 11)
+TRACE t17692: | | | => 5
+TRACE t17693: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5} nil)
+TRACE t17693: | | | => nil
+TRACE t17694: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5} 1)
+TRACE t17694: | | | => 1
+TRACE t17695: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5} 5)
+TRACE t17695: | | | => 5
+TRACE t17696: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5} 10)
+TRACE t17696: | | | => 10
+TRACE t17697: | | | (cljs-polytopes.graph/common-cycle [true [15 5 nil]] [true [1 5 10]])
+TRACE t17698: | | | | (cljs-polytopes.graph/-index-of [15 5 nil] 5)
+TRACE t17698: | | | | => 1
+TRACE t17699: | | | | (cljs-polytopes.graph/-index-of [1 5 10] 5)
+TRACE t17699: | | | | => 1
+TRACE t17700: | | | | (cljs-polytopes.graph/pair-induction [5 5])
+TRACE t17700: | | | | => [5 5]
+TRACE t17701: | | | | (cljs-polytopes.graph/pair-induction [nil 10])
+TRACE t17701: | | | | => [10 10]
+TRACE t17702: | | | | (cljs-polytopes.graph/pair-induction [15 1])
+TRACE t17702: | | | | => [15 1]
+TRACE t17697: | | | => [true ([5 5] [10 10] [15 1])]
+TRACE t17703: | | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1}] [15 1])
+TRACE t17704: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1} 12)
+TRACE t17704: | | | | => 0
+TRACE t17705: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1} 16)
+TRACE t17705: | | | | => 4
+TRACE t17706: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1} 21)
+TRACE t17706: | | | | => 21
+TRACE t17707: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1} 0)
+TRACE t17707: | | | | => 0
+TRACE t17708: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1} 4)
+TRACE t17708: | | | | => 4
+TRACE t17709: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1} 2)
+TRACE t17709: | | | | => 2
+TRACE t17710: | | | | (cljs-polytopes.graph/common-cycle [true [0 4 21]] [true [0 4 2]])
+TRACE t17711: | | | | | (cljs-polytopes.graph/-index-of [0 4 21] 0)
+TRACE t17711: | | | | | => 0
+TRACE t17712: | | | | | (cljs-polytopes.graph/-index-of [0 4 2] 0)
+TRACE t17712: | | | | | => 0
+TRACE t17713: | | | | | (cljs-polytopes.graph/pair-induction [0 0])
+TRACE t17713: | | | | | => [0 0]
+TRACE t17714: | | | | | (cljs-polytopes.graph/pair-induction [4 4])
+TRACE t17714: | | | | | => [4 4]
+TRACE t17715: | | | | | (cljs-polytopes.graph/pair-induction [21 2])
+TRACE t17715: | | | | | => [21 2]
+TRACE t17710: | | | | => [true ([0 0] [4 4] [21 2])]
+TRACE t17716: | | | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2}] [21 2])
+TRACE t17717: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2} 13)
+TRACE t17717: | | | | | => 13
+TRACE t17718: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2} 15)
+TRACE t17718: | | | | | => 1
+TRACE t17719: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2} nil)
+TRACE t17719: | | | | | => nil
+TRACE t17720: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2} 1)
+TRACE t17720: | | | | | => 1
+TRACE t17721: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2} 10)
+TRACE t17721: | | | | | => 10
+TRACE t17722: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2} 3)
+TRACE t17722: | | | | | => 3
+TRACE t17723: | | | | | (cljs-polytopes.graph/common-cycle [true [13 1 nil]] [true [1 10 3]])
+TRACE t17724: | | | | | | (cljs-polytopes.graph/-index-of [13 1 nil] 1)
+TRACE t17724: | | | | | | => 1
+TRACE t17725: | | | | | | (cljs-polytopes.graph/-index-of [1 10 3] 1)
+TRACE t17725: | | | | | | => 0
+TRACE t17726: | | | | | | (cljs-polytopes.graph/pair-induction [1 1])
+TRACE t17726: | | | | | | => [1 1]
+TRACE t17727: | | | | | | (cljs-polytopes.graph/pair-induction [nil 10])
+TRACE t17727: | | | | | | => [10 10]
+TRACE t17728: | | | | | | (cljs-polytopes.graph/pair-induction [13 3])
+TRACE t17728: | | | | | | => [13 3]
+TRACE t17723: | | | | | => [true ([1 1] [10 10] [13 3])]
+TRACE t17729: | | | | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}] [13 3])
+TRACE t17730: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 12)
+TRACE t17730: | | | | | | => 0
+TRACE t17731: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 21)
+TRACE t17731: | | | | | | => 2
+TRACE t17732: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17732: | | | | | | => 14
+TRACE t17733: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17733: | | | | | | => 0
+TRACE t17734: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17734: | | | | | | => 2
+TRACE t17735: | | | | | | (cljs-polytopes.graph/common-cycle [true [0 2 14]] [true [0 2]])
+TRACE t17735: | | | | | | => nil
+TRACE t17736: | | | | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3})
+TRACE t17737: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17737: | | | | | | | => 1
+TRACE t17738: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17738: | | | | | | | => 3
+TRACE t17739: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17739: | | | | | | | => 5
+TRACE t17740: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17740: | | | | | | | => 0
+TRACE t17741: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17741: | | | | | | | => 4
+TRACE t17742: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17742: | | | | | | | => 2
+TRACE t17743: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17743: | | | | | | | => 1
+TRACE t17744: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17744: | | | | | | | => 5
+TRACE t17745: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17745: | | | | | | | => 10
+TRACE t17746: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 12)
+TRACE t17746: | | | | | | | => 0
+TRACE t17747: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 16)
+TRACE t17747: | | | | | | | => 4
+TRACE t17748: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 21)
+TRACE t17748: | | | | | | | => 2
+TRACE t17749: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 13)
+TRACE t17749: | | | | | | | => 3
+TRACE t17750: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 15)
+TRACE t17750: | | | | | | | => 1
+TRACE t17751: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17751: | | | | | | | => nil
+TRACE t17752: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 12)
+TRACE t17752: | | | | | | | => 0
+TRACE t17753: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 21)
+TRACE t17753: | | | | | | | => 2
+TRACE t17754: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17754: | | | | | | | => 14
+TRACE t17755: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17755: | | | | | | | => 0
+TRACE t17756: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17756: | | | | | | | => 2
+TRACE t17757: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 11)
+TRACE t17757: | | | | | | | => 5
+TRACE t17758: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 15)
+TRACE t17758: | | | | | | | => 1
+TRACE t17759: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 13)
+TRACE t17759: | | | | | | | => 3
+TRACE t17760: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17760: | | | | | | | => 1
+TRACE t17761: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17761: | | | | | | | => 10
+TRACE t17762: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17762: | | | | | | | => 3
+TRACE t17763: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 12)
+TRACE t17763: | | | | | | | => 0
+TRACE t17764: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17764: | | | | | | | => 14
+TRACE t17765: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 16)
+TRACE t17765: | | | | | | | => 4
+TRACE t17766: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17766: | | | | | | | => 4
+TRACE t17767: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17767: | | | | | | | => 0
+TRACE t17768: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17768: | | | | | | | => nil
+TRACE t17769: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 11)
+TRACE t17769: | | | | | | | => 5
+TRACE t17770: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 13)
+TRACE t17770: | | | | | | | => 3
+TRACE t17771: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 15)
+TRACE t17771: | | | | | | | => 1
+TRACE t17772: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 11)
+TRACE t17772: | | | | | | | => 5
+TRACE t17773: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17773: | | | | | | | => nil
+TRACE t17774: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17774: | | | | | | | => 2
+TRACE t17775: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17775: | | | | | | | => 4
+TRACE t17776: | | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17776: | | | | | | | => nil
+TRACE t17736: | | | | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [0 4 2]], 21 ["abaaP" true [3 1 nil]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17729: | | | | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}]
+TRACE t17777: | | | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [12 16 21]], 21 ["abaaP" true [13 15 nil]], 13 ["abbP" true [12 21 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [11 15 13]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [12 14 16]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [11 13]], 16 ["aaP" true [15 11 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3})
+TRACE t17778: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17778: | | | | | | => 1
+TRACE t17779: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17779: | | | | | | => 3
+TRACE t17780: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17780: | | | | | | => 5
+TRACE t17781: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17781: | | | | | | => 0
+TRACE t17782: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17782: | | | | | | => 4
+TRACE t17783: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17783: | | | | | | => 2
+TRACE t17784: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17784: | | | | | | => 1
+TRACE t17785: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17785: | | | | | | => 5
+TRACE t17786: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17786: | | | | | | => 10
+TRACE t17787: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 12)
+TRACE t17787: | | | | | | => 0
+TRACE t17788: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 16)
+TRACE t17788: | | | | | | => 4
+TRACE t17789: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 21)
+TRACE t17789: | | | | | | => 2
+TRACE t17790: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 13)
+TRACE t17790: | | | | | | => 3
+TRACE t17791: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 15)
+TRACE t17791: | | | | | | => 1
+TRACE t17792: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17792: | | | | | | => nil
+TRACE t17793: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 12)
+TRACE t17793: | | | | | | => 0
+TRACE t17794: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 21)
+TRACE t17794: | | | | | | => 2
+TRACE t17795: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17795: | | | | | | => 14
+TRACE t17796: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17796: | | | | | | => 0
+TRACE t17797: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17797: | | | | | | => 2
+TRACE t17798: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 11)
+TRACE t17798: | | | | | | => 5
+TRACE t17799: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 15)
+TRACE t17799: | | | | | | => 1
+TRACE t17800: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 13)
+TRACE t17800: | | | | | | => 3
+TRACE t17801: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17801: | | | | | | => 1
+TRACE t17802: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17802: | | | | | | => 10
+TRACE t17803: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17803: | | | | | | => 3
+TRACE t17804: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 12)
+TRACE t17804: | | | | | | => 0
+TRACE t17805: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17805: | | | | | | => 14
+TRACE t17806: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 16)
+TRACE t17806: | | | | | | => 4
+TRACE t17807: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17807: | | | | | | => 4
+TRACE t17808: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17808: | | | | | | => 0
+TRACE t17809: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17809: | | | | | | => nil
+TRACE t17810: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 11)
+TRACE t17810: | | | | | | => 5
+TRACE t17811: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 13)
+TRACE t17811: | | | | | | => 3
+TRACE t17812: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 15)
+TRACE t17812: | | | | | | => 1
+TRACE t17813: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 11)
+TRACE t17813: | | | | | | => 5
+TRACE t17814: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17814: | | | | | | => nil
+TRACE t17815: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17815: | | | | | | => 2
+TRACE t17816: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17816: | | | | | | => 4
+TRACE t17817: | | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17817: | | | | | | => nil
+TRACE t17777: | | | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [0 4 2]], 21 ["abaaP" true [3 1 nil]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17716: | | | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [0 4 2]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}]
+TRACE t17818: | | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [0 4 2]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3})
+TRACE t17819: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17819: | | | | | => 1
+TRACE t17820: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17820: | | | | | => 3
+TRACE t17821: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17821: | | | | | => 5
+TRACE t17822: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17822: | | | | | => 0
+TRACE t17823: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17823: | | | | | => 4
+TRACE t17824: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17824: | | | | | => 2
+TRACE t17825: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17825: | | | | | => 1
+TRACE t17826: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17826: | | | | | => 5
+TRACE t17827: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17827: | | | | | => 10
+TRACE t17828: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17828: | | | | | => 0
+TRACE t17829: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17829: | | | | | => 4
+TRACE t17830: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17830: | | | | | => 2
+TRACE t17831: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17831: | | | | | => 0
+TRACE t17832: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17832: | | | | | => 2
+TRACE t17833: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17833: | | | | | => 14
+TRACE t17834: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17834: | | | | | => 0
+TRACE t17835: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17835: | | | | | => 2
+TRACE t17836: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17836: | | | | | => 5
+TRACE t17837: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17837: | | | | | => 1
+TRACE t17838: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17838: | | | | | => 3
+TRACE t17839: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17839: | | | | | => 1
+TRACE t17840: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17840: | | | | | => 10
+TRACE t17841: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17841: | | | | | => 3
+TRACE t17842: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17842: | | | | | => 0
+TRACE t17843: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17843: | | | | | => 14
+TRACE t17844: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17844: | | | | | => 4
+TRACE t17845: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17845: | | | | | => 4
+TRACE t17846: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17846: | | | | | => 0
+TRACE t17847: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17847: | | | | | => nil
+TRACE t17848: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17848: | | | | | => 5
+TRACE t17849: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17849: | | | | | => 3
+TRACE t17850: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17850: | | | | | => 1
+TRACE t17851: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17851: | | | | | => 5
+TRACE t17852: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17852: | | | | | => nil
+TRACE t17853: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17853: | | | | | => 2
+TRACE t17854: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17854: | | | | | => 4
+TRACE t17855: | | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17855: | | | | | => nil
+TRACE t17818: | | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 15 ["aaaP" true [0 4 2]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17703: | | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}]
+TRACE t17856: | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3})
+TRACE t17857: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17857: | | | | => 1
+TRACE t17858: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17858: | | | | => 3
+TRACE t17859: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17859: | | | | => 5
+TRACE t17860: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17860: | | | | => 0
+TRACE t17861: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17861: | | | | => 4
+TRACE t17862: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17862: | | | | => 2
+TRACE t17863: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17863: | | | | => 1
+TRACE t17864: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17864: | | | | => 5
+TRACE t17865: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17865: | | | | => 10
+TRACE t17866: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17866: | | | | => 0
+TRACE t17867: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17867: | | | | => 2
+TRACE t17868: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17868: | | | | => 14
+TRACE t17869: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17869: | | | | => 0
+TRACE t17870: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17870: | | | | => 2
+TRACE t17871: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17871: | | | | => 5
+TRACE t17872: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17872: | | | | => 1
+TRACE t17873: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17873: | | | | => 3
+TRACE t17874: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17874: | | | | => 1
+TRACE t17875: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17875: | | | | => 10
+TRACE t17876: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17876: | | | | => 3
+TRACE t17877: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17877: | | | | => 0
+TRACE t17878: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17878: | | | | => 14
+TRACE t17879: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17879: | | | | => 4
+TRACE t17880: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17880: | | | | => 4
+TRACE t17881: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17881: | | | | => 0
+TRACE t17882: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17882: | | | | => nil
+TRACE t17883: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17883: | | | | => 5
+TRACE t17884: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17884: | | | | => 3
+TRACE t17885: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17885: | | | | => 1
+TRACE t17886: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17886: | | | | => 5
+TRACE t17887: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17887: | | | | => nil
+TRACE t17888: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17888: | | | | => 2
+TRACE t17889: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17889: | | | | => 4
+TRACE t17890: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17890: | | | | => nil
+TRACE t17856: | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [1 5 10]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 16 ["aaP" true [1 5 nil]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17690: | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}]
+TRACE t17891: | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}] [12 0])
+TRACE t17892: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17892: | | | => 5
+TRACE t17893: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17893: | | | => 1
+TRACE t17894: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17894: | | | => 3
+TRACE t17895: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17895: | | | => 1
+TRACE t17896: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17896: | | | => 3
+TRACE t17897: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17897: | | | => 5
+TRACE t17898: | | | (cljs-polytopes.graph/common-cycle [true [5 1 3]] [true [1 3 5]])
+TRACE t17899: | | | | (cljs-polytopes.graph/-index-of [5 1 3] 1)
+TRACE t17899: | | | | => 1
+TRACE t17900: | | | | (cljs-polytopes.graph/-index-of [1 3 5] 1)
+TRACE t17900: | | | | => 0
+TRACE t17901: | | | | (cljs-polytopes.graph/pair-induction [1 1])
+TRACE t17901: | | | | => [1 1]
+TRACE t17902: | | | | (cljs-polytopes.graph/pair-induction [3 3])
+TRACE t17902: | | | | => [3 3]
+TRACE t17903: | | | | (cljs-polytopes.graph/pair-induction [5 5])
+TRACE t17903: | | | | => [5 5]
+TRACE t17898: | | | => [true ([1 1] [3 3] [5 5])]
+TRACE t17904: | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3})
+TRACE t17905: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17905: | | | | => 1
+TRACE t17906: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17906: | | | | => 3
+TRACE t17907: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17907: | | | | => 5
+TRACE t17908: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17908: | | | | => 0
+TRACE t17909: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17909: | | | | => 4
+TRACE t17910: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17910: | | | | => 2
+TRACE t17911: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17911: | | | | => 5
+TRACE t17912: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17912: | | | | => 10
+TRACE t17913: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17913: | | | | => 1
+TRACE t17914: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17914: | | | | => 0
+TRACE t17915: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17915: | | | | => 2
+TRACE t17916: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17916: | | | | => 14
+TRACE t17917: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17917: | | | | => 0
+TRACE t17918: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17918: | | | | => 2
+TRACE t17919: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17919: | | | | => 5
+TRACE t17920: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17920: | | | | => 1
+TRACE t17921: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17921: | | | | => 3
+TRACE t17922: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17922: | | | | => 1
+TRACE t17923: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17923: | | | | => 10
+TRACE t17924: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17924: | | | | => 3
+TRACE t17925: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17925: | | | | => 0
+TRACE t17926: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17926: | | | | => 14
+TRACE t17927: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17927: | | | | => 4
+TRACE t17928: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17928: | | | | => 4
+TRACE t17929: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17929: | | | | => 0
+TRACE t17930: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17930: | | | | => nil
+TRACE t17931: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17931: | | | | => 5
+TRACE t17932: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17932: | | | | => 3
+TRACE t17933: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17933: | | | | => 2
+TRACE t17934: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17934: | | | | => 4
+TRACE t17935: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17935: | | | | => nil
+TRACE t17904: | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 12 ["abP" true [5 1 3]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17891: | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}]
+TRACE t17936: | | (cljs-polytopes.graph/merge-vertices [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}] [11 5])
+TRACE t17937: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17937: | | | => 0
+TRACE t17938: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17938: | | | => 14
+TRACE t17939: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17939: | | | => 4
+TRACE t17940: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17940: | | | => 4
+TRACE t17941: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17941: | | | => 0
+TRACE t17942: | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17942: | | | => nil
+TRACE t17943: | | | (cljs-polytopes.graph/common-cycle [true [0 14 4]] [true [4 0 nil]])
+TRACE t17944: | | | | (cljs-polytopes.graph/-index-of [0 14 4] 0)
+TRACE t17944: | | | | => 0
+TRACE t17945: | | | | (cljs-polytopes.graph/-index-of [4 0 nil] 0)
+TRACE t17945: | | | | => 1
+TRACE t17946: | | | | (cljs-polytopes.graph/pair-induction [0 0])
+TRACE t17946: | | | | => [0 0]
+TRACE t17947: | | | | (cljs-polytopes.graph/pair-induction [14 nil])
+TRACE t17947: | | | | => [14 14]
+TRACE t17948: | | | | (cljs-polytopes.graph/pair-induction [4 4])
+TRACE t17948: | | | | => [4 4]
+TRACE t17943: | | | => [true ([0 0] [14 14] [4 4])]
+TRACE t17949: | | | (cljs-polytopes.graph/-replace-with-equivalent {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3})
+TRACE t17950: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17950: | | | | => 1
+TRACE t17951: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17951: | | | | => 3
+TRACE t17952: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17952: | | | | => 5
+TRACE t17953: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17953: | | | | => 0
+TRACE t17954: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17954: | | | | => 4
+TRACE t17955: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17955: | | | | => 2
+TRACE t17956: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17956: | | | | => 5
+TRACE t17957: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17957: | | | | => 10
+TRACE t17958: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17958: | | | | => 1
+TRACE t17959: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17959: | | | | => 0
+TRACE t17960: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17960: | | | | => 2
+TRACE t17961: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17961: | | | | => 14
+TRACE t17962: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17962: | | | | => 0
+TRACE t17963: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17963: | | | | => 2
+TRACE t17964: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 1)
+TRACE t17964: | | | | => 1
+TRACE t17965: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 10)
+TRACE t17965: | | | | => 10
+TRACE t17966: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17966: | | | | => 3
+TRACE t17967: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17967: | | | | => 0
+TRACE t17968: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 14)
+TRACE t17968: | | | | => 14
+TRACE t17969: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17969: | | | | => 4
+TRACE t17970: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17970: | | | | => 4
+TRACE t17971: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 0)
+TRACE t17971: | | | | => 0
+TRACE t17972: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17972: | | | | => nil
+TRACE t17973: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 5)
+TRACE t17973: | | | | => 5
+TRACE t17974: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 3)
+TRACE t17974: | | | | => 3
+TRACE t17975: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 2)
+TRACE t17975: | | | | => 2
+TRACE t17976: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} 4)
+TRACE t17976: | | | | => 4
+TRACE t17977: | | | | (cljs-polytopes.graph/-get-member-or-index {16 4, 12 0, 11 5, 15 1, 21 2, 13 3} nil)
+TRACE t17977: | | | | => nil
+TRACE t17949: | | | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 11 ["aP" true [0 14 4]], 5 ["aP" true [4 0 nil]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17936: | | => [{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [0 14 4]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]} {16 4, 12 0, 11 5, 15 1, 21 2, 13 3}]
+TRACE t17629: | => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [0 14 4]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]}
+TRACE t17358: => {0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [0 14 4]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]}
+{0 ["P" true [1 3 5]], 1 ["bP" true [0 4 2]], 4 ["aaP" true [5 10 1]], 13 ["abbP" true [0 2 14]], 3 ["bbbP" true [0 2]], 2 ["bbP" true [1 10 3]], 5 ["aP" true [0 14 4]], 14 ["abbbP" true [5 3]], 10 ["baaP" true [2 4 nil]]}

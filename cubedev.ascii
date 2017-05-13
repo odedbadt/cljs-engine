@@ -1,0 +1,145 @@
+5:aP  < 0:P  < 3:bbbP
+V a   ^  V   b  ^
+4:aaP > 1:bP > 2:bbP
+
+         |
+        "b"
+         V
+
+5:aP  < 0:P  < 3:bbbP
+V a   ^  V   b  ^
+4:aaP > 1:bP > 2:bbP
+
+        11     10
+        baP   baaP
+
+5:aP  < 0:P  < 3:bbbP
+V a   ^  V   b  ^
+4:aaP > 1:bP > 2:bbP
+     \        /
+      \ 10   /
+        baaP
+
+
+        |
+        a
+        |
+
+
+
+
+
+14:abbbP abbP 21:abaaP
+
+5:aP  < 0:P  < 3:bbbP,abaP
+V a   ^  V   b  ^
+4:aaP > 1:bP > 2:bbP
+
+        11     10
+        baP   baaP
+
+{0: ('P', (True, [1, 3, 5])),
+ 1: ('bP', (True, [0, 4, 2])),
+ 2: ('bbP', (True, [1, 10, 3])),
+ 3: ('bbbP', (True, [0, 2, 14])),
+ 4: ('aaP', (True, [5, 10, 1])),
+ 5: ('aP', (True, [0, 14, 4])),
+ 10: ('baaP', (True, [2, 4, None])),
+ 14: ('abbbP', (True, [5, 3, None]))}
+
+{0 ["P" true [1 3 5]],
+ 1 ["bP" true [2 0 4]],
+ 4 ["aaP" true [1 5 nil]],
+ 21 ["abaaP" true [3 1 nil]],
+ 3 ["bbbP" true [0 2 nil]],
+ 2 ["bbP" true [3 1 nil]],
+ 5 ["aP" true [4 0 nil]],
+ 14 ["abbbP" true [5 3 nil]],
+ 10 ["baaP" true [2 4 nil]]}
+
+
+
+
+ {0 ["P" true [1 3 5]],
+ 7 ["bbP" true [8 6 10]],
+ 1 ["bP" true [2 0 4]],
+ 4 ["aaP" true [1 5 nil]],
+ 6 ["bP" true [7 9 11]],
+ 3 ["bbbP" true [0 2 nil]],
+ 2 ["bbP" true [3 1 nil]],
+ 11 ["baP" true [10 6 nil]],
+ 9 ["bbbbP" true [6 8 nil]],
+ 5 ["aP" true [4 0 nil]],
+ 10 ["baaP" true [7 11 nil]], 8 ["bbbP" true [9 7 nil]]}
+
+
+
+Lean
+====
+cube_rules = [('aaa', ''),
+         ('bbbb', ''),
+         ('aP', 'P'),
+         ('abP', 'bbbP')]
+
+cube_lean_initial_graph = {
+    0: ('P', (True, [1, 2, 3])),
+    1: ('bP', (False, [0])),
+    2: ('bbbP', (False, [0])),
+    3: ('abbbP', (False, [0])),
+}
+
+
+1   3
+ \ /
+  0
+  |
+  2
+
+(bbb)
+
+15  7
+ \  |
+  5-1   3
+   \ \ /
+    \ 0
+     \|
+      2
+      |
+     31
+
+(a)
+
+15  7     63
+ \  |    /
+  5-1   3
+   \ \ /
+    \ 0
+     \|
+      2
+      |
+     31
+      |
+     47
+bbb
+---
+{0: ('P', (True, [2, 3, 1])),
+ 1: ('bP', (True, [5, 0, 7])),
+ 2: ('bbbP', (True, [5, 31, 0])),
+ 3: ('abbbP', (False, [0])),
+ 5: ('bbP', (True, [1, 15, 2])),
+ 7: ('babbbP', (False, [1])),
+ 15: ('bbabbbP', (False, [5])),
+ 31: ('bbbabbbP', (False, [2]))}
+
+{0: ('P', (True, [2, 3, 1])),
+ 1: ('bP', (True, [0, 7, 5])),
+ 2: ('bbbP', (True, [0, 5, 31])),
+ 3: ('abbbP', (True, [0, 31, 63])),
+ 5: ('bbP', (True, [2, 1, 15])),
+ 7: ('babbbP', (False, [1])),
+ 15: ('bbabbbP', (False, [5])),
+ 31: ('bbbabbbP', (True, [2, 47, 3])),
+ 47: ('abbabbbP', (False, [31])),
+ 63: ('abbbabbbP', (False, [3]))}
+
+
