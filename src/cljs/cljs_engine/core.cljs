@@ -14,6 +14,7 @@
 
 (def location-chan (chan))
 (def location-chan-2 (chan))
+(def location-chan-3 (chan))
 (def location-atom (atom [300 300]))
 (def color-atom (atom "red"))
 (def color-chan (chan))
@@ -26,6 +27,7 @@
   (let [loc (<! location-chan)]
     (print "loc" loc)
     (put! location-chan-2 loc)
+    (put! location-chan-3 loc)
     (swap! location-atom (fn [prev] loc))
     (recur)))
 
@@ -74,22 +76,25 @@
           mouse-location [0 0]
 
           drag-offset nil]
-  (put! location-chan circle-location)
+
   (put! color-chan (if drag-offset "red" "green"))
   (alt!
-   mousebuttonchan ([new-button] (recur circle-location
+    location-chan-3 ([new-circle-location] (recur new-circle-location mouse-location drag-offset))
+   mousebuttonchan ([new-button]
+                    (put! location-chan circle-location)
+                    (recur circle-location
                                         mouse-location
                                         (and (= 1 new-button)
                                              (< (dist2 circle-location mouse-location) 100)
                                              (vminus circle-location mouse-location))
 
                                         ))
-   mousemovechan ([new-mouse-location] (recur (if drag-offset
-                                                (vplus new-mouse-location
-                                                       drag-offset)
-                                                circle-location)
-                                        new-mouse-location
-                                        drag-offset))
+   mousemovechan ([new-mouse-location]
+                  (let [calculated-loc (if drag-offset
+                                         (vplus new-mouse-location drag-offset)
+                                         circle-location)]
+                    (put! location-chan calculated-loc)
+                    (recur calculated-loc new-mouse-location drag-offset)))
            ))
 
 
@@ -119,10 +124,6 @@
     [:canvas#main-canvas {:width 600 :height 600 :onMouseMove mousemoveoncanvas
                                                  :onMouseDown mousedowncanvas
                                                  :onMouseUp mouseupcanvas}]
-    [:button {:onClick reset} "Reset"]
-    ;[:button {:onClick #(swap! poly-state (partial reset-vertices true))} "Random"]
-    [:button {:onClick step} "Step"]
-    ;[:button {:onClick go} "Go"]]
     ]))
 
 
@@ -148,7 +149,7 @@
     (.render js/React (main-template) node)
     (let [dom (.getElementById js/document "main-canvas")
           ctx (.getContext dom "2d")]
-      (set! (.-fillStyle ctx) "white")
+      (set! (.-fillStyle ctx) "#eee")
       (.fillRect ctx 0 0 600 600)
       (set! (.-fillStyle ctx) color)
       (.beginPath ctx)
