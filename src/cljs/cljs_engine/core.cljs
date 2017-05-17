@@ -6,45 +6,33 @@
    [clojure.core.matrix :as mtrx :include-macros]
    [clojure.core.matrix.random :as rnd :include-macros]
    [cljs-engine.shapes :as shapes]
-   [cljs.core.async :refer [<! >! chan sliding-buffer put! close! timeout]])
+   [cljs.core.async :refer [<! >! chan sliding-buffer put! close! timeout mult tap]])
   (:require-macros
    [cljs.core.async.macros :refer [go-loop go alt!]]))
 
 (enable-console-print!)
 
 (def location-chan (chan))
-(def location-chan-2 (chan))
-(def location-chan-3 (chan))
+(def location-mult (mult location-chan))
+(defn tap-to [mlt]  (let [ch (chan)]
+    (tap mlt ch)
+    ch
+    ))
 (def location-atom (atom [300 300]))
-(def color-atom (atom "red"))
 (def color-chan (chan))
-(def color-chan-2 (chan))
-
-(def circle-atom (atom {:color @color-atom :location @location-atom}))
+(def color-mult (mult color-chan))
 (def circle-chan (chan))
 
-(go-loop []
-  (let [loc (<! location-chan)]
-    (print "loc" loc)
-    (put! location-chan-2 loc)
-    (put! location-chan-3 loc)
-    (swap! location-atom (fn [prev] loc))
-    (recur)))
 
 
-(go-loop []
-  (let [color (<! color-chan)]
-    (print "col" color)
-    (put! color-chan-2 color)
-    (swap! color-atom (fn [prev] color))
-    (recur)))
-
-(go-loop [location @location-atom
-          color @color-atom]
+(go-loop [location-tap (tap-to location-mult)
+          color-tap (tap-to color-mult)
+          location @location-atom
+          color "blue"]
   (put! circle-chan {:location location :color color})
   (alt!
-       color-chan-2 ([new-color] (recur location new-color))
-       location-chan-2 ([new-location] (recur new-location color)))
+       color-tap ([new-color] (recur location-tap color-tap location new-color))
+       location-tap ([new-location] (recur location-tap color-tap new-location color)))
   )
 
 
@@ -72,30 +60,33 @@
 
 
 (defonce poly-state (atom starting-state))
-(go-loop [circle-location @location-atom
+(go-loop [location-tap (tap-to location-mult)
+          circle-location @location-atom
           mouse-location [0 0]
-
           drag-offset nil]
-
   (put! color-chan (if drag-offset "red" "green"))
   (alt!
-    location-chan-3 ([new-circle-location] (recur new-circle-location mouse-location drag-offset))
-   mousebuttonchan ([new-button]
-                    (put! location-chan circle-location)
-                    (recur circle-location
-                                        mouse-location
-                                        (and (= 1 new-button)
-                                             (< (dist2 circle-location mouse-location) 100)
-                                             (vminus circle-location mouse-location))
+    location-tap ([new-circle-location] (recur location-chan
+                                               new-circle-location
+                                               mouse-location
+                                               drag-offset))
+    mousebuttonchan ([new-button]
+                     (recur location-chan
+                            circle-location
+                            mouse-location
+                            (and (= 1 new-button)
+                                 (< (dist2 circle-location mouse-location) 100)
+                                 (vminus circle-location mouse-location))))
+    mousemovechan ([new-mouse-location]
+                   (let [calculated-loc (if drag-offset
+                                          (vplus new-mouse-location drag-offset)
+                                          circle-location)]
 
-                                        ))
-   mousemovechan ([new-mouse-location]
-                  (let [calculated-loc (if drag-offset
-                                         (vplus new-mouse-location drag-offset)
-                                         circle-location)]
-                    (put! location-chan calculated-loc)
-                    (recur calculated-loc new-mouse-location drag-offset)))
-           ))
+                     (put! location-chan calculated-loc)
+                     (recur location-chan
+                            calculated-loc
+                            new-mouse-location
+                            drag-offset)))))
 
 
 
