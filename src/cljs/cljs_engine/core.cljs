@@ -13,28 +13,56 @@
 (enable-console-print!)
 
 (def location-chan (chan))
+(def locations-chan (chan))
+(def horizontal-location-chan (chan))
 (def location-mult (mult location-chan))
-(defn tap-to [mlt]  (let [ch (chan)]
+(def horizontal-location-mult (mult horizontal-location-chan))
+(def locations-mult (mult locations-chan))
+(defn tap-to [mlt]
+  (let [ch (chan)]
     (tap mlt ch)
     ch
     ))
-(def location-atom (atom [300 300]))
 (def color-chan (chan))
-(def color-mult (mult color-chan))
 (def circle-chan (chan))
 
+(go-loop [tp (tap-to location-mult)]
+         (let [[x y] (<! tp)]
+           (put! horizontal-location-chan [x 100])
+           (recur tp)))
+(put! locations-chan [[300 300] [300 100]])
+(go-loop [tp (tap-to location-mult)
+          htp (tap-to horizontal-location-mult)
+          v1 [300 300]
+          v2 [300 100]]
+         (print "JJ" v1 v2)
+         (put! locations-chan [v1 v2])
+         (alt!
+           tp ([nv1] (print "A") (recur tp htp nv1 v2))
+           htp ([nv2] (print "B") (recur tp htp v1 nv2))
+           ))
 
 
-(go-loop [location-tap (tap-to location-mult)
-          color-tap (tap-to color-mult)
-          location @location-atom
+(go-loop [locations-tap (tap-to locations-mult)
+          locations [[300 300]]
           color "blue"]
-  (put! circle-chan {:location location :color color})
+  (print "YY1" locations)
+  (put! circle-chan {:locations locations :color color})
   (alt!
-       color-tap ([new-color] (recur location-tap color-tap location new-color))
-       location-tap ([new-location] (recur location-tap color-tap new-location color)))
+       color-chan ([new-color] (print "CC") (recur locations-tap locations new-color))
+       locations-tap ([new-locations] (print "NL" new-locations) (recur locations-tap new-locations color)))
   )
 
+; (go-loop [location-tap (tap-to location-mult)
+;           location [300 300]
+;           color "blue"]
+;   (print "YY2" location)
+;   (put! circle-chan {:locations [location] :color color})
+;   (alt!
+;        color-chan ([new-color] (recur location-tap location new-color))
+;        locations-chan ([new-locations] (recur location-tap location color))
+;        location-tap ([new-location] (recur location-tap new-location color)))
+;   )
 
 (def mousebuttonchan (chan))
 (def mousemovechan (chan))
@@ -61,29 +89,31 @@
 
 (defonce poly-state (atom starting-state))
 (go-loop [location-tap (tap-to location-mult)
-          circle-location @location-atom
+          circle-location [300 300]
           mouse-location [0 0]
           drag-offset nil]
-  (put! color-chan (if drag-offset "red" "green"))
   (alt!
-    location-tap ([new-circle-location] (recur location-chan
+    location-tap ([new-circle-location] (recur location-tap
                                                new-circle-location
                                                mouse-location
                                                drag-offset))
     mousebuttonchan ([new-button]
-                     (recur location-chan
-                            circle-location
-                            mouse-location
-                            (and (= 1 new-button)
+                     (let [calculated-drag-offset (and (= 1 new-button)
                                  (< (dist2 circle-location mouse-location) 100)
-                                 (vminus circle-location mouse-location))))
+                                 (vminus circle-location mouse-location))]
+                       (put! color-chan (if drag-offset "red" "green"))
+                       (recur location-tap
+                              circle-location
+                              mouse-location
+                              calculated-drag-offset
+                              )))
     mousemovechan ([new-mouse-location]
                    (let [calculated-loc (if drag-offset
                                           (vplus new-mouse-location drag-offset)
                                           circle-location)]
-
-                     (put! location-chan calculated-loc)
-                     (recur location-chan
+                     (print "CALC" circle-location calculated-loc)
+                     (when drag-offset (print drag-offset) (put! location-chan calculated-loc))
+                     (recur location-tap
                             calculated-loc
                             new-mouse-location
                             drag-offset)))))
@@ -136,16 +166,18 @@
 ;       ))))
 
 (let [node (.getElementById js/document "main-area")]
-  (defn renderer [{color :color [x y] :location}]
+  (defn renderer [{color :color locations :locations}]
     (.render js/React (main-template) node)
     (let [dom (.getElementById js/document "main-canvas")
           ctx (.getContext dom "2d")]
       (set! (.-fillStyle ctx) "#eee")
       (.fillRect ctx 0 0 600 600)
       (set! (.-fillStyle ctx) color)
-      (.beginPath ctx)
-      (.arc ctx  x y 10 0 6.28 false)
-      (.fill ctx)
+      (print locations)
+      (doseq [[x y] locations]
+        (.beginPath ctx)
+        (.arc ctx x y 10 0 6.28 false)
+        (.fill ctx))
       )))
 
 
