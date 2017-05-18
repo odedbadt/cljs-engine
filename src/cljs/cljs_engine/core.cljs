@@ -13,10 +13,12 @@
 (enable-console-print!)
 
 (def location-chan (chan))
-(def locations-chan (chan))
-(def horizontal-location-chan (chan))
 (def location-mult (mult location-chan))
+(def horizontal-location-chan (chan))
 (def horizontal-location-mult (mult horizontal-location-chan))
+(def vertical-location-chan (chan))
+(def vertical-location-mult (mult vertical-location-chan))
+(def locations-chan (chan))
 (def locations-mult (mult locations-chan))
 (defn tap-to [mlt]
   (let [ch (chan)]
@@ -26,10 +28,31 @@
 (def color-chan (chan))
 (def circle-chan (chan))
 
-(go-loop [tp (tap-to location-mult)]
-         (let [[x y] (<! tp)]
-           (put! horizontal-location-chan [x 100])
-           (recur tp)))
+; (go-loop [tp (tap-to location-mult)]
+;          (let [[x y] (<! tp)]
+;            (put! horizontal-location-chan [x 100])
+;            (recur tp)))
+
+(let [tp (tap-to location-mult)
+      htp (tap-to horizontal-location-mult)
+      ]
+  (go-loop [x 300
+            y 300
+            hx 300
+            hy 100]
+    (print "T")
+    (alt!
+      tp ([[nx ny]]
+        (put! horizontal-location-chan [hx hy])
+        (recur nx ny nx hy))
+      htp ([[nhx nhy]]
+        (put! location-chan [x y])
+        (recur nhx y nhx nhy)))))
+; (go-loop [tp (tap-to horizontal-location-mult)]
+;          (let [[x y] (<! tp)]
+;            (put! horizontal-location-chan [x 100])
+;            (recur tp)))
+
 (put! locations-chan [[300 300] [300 100]])
 (go-loop [tp (tap-to location-mult)
           htp (tap-to horizontal-location-mult)
@@ -65,7 +88,9 @@
 ;   )
 
 (def mousebuttonchan (chan))
+(def mousebutton-mult (mult mousebuttonchan))
 (def mousemovechan (chan))
+(def mousemove-mult (mult mousemovechan))
 
 
 (def starting-state {
@@ -88,37 +113,66 @@
 
 
 (defonce poly-state (atom starting-state))
-(go-loop [location-tap (tap-to location-mult)
-          circle-location [300 300]
-          mouse-location [0 0]
-          drag-offset nil]
-  (alt!
-    location-tap ([new-circle-location] (recur location-tap
-                                               new-circle-location
-                                               mouse-location
-                                               drag-offset))
-    mousebuttonchan ([new-button]
-                     (let [calculated-drag-offset (and (= 1 new-button)
-                                 (< (dist2 circle-location mouse-location) 100)
-                                 (vminus circle-location mouse-location))]
-                       (put! color-chan (if drag-offset "red" "green"))
-                       (recur location-tap
-                              circle-location
-                              mouse-location
-                              calculated-drag-offset
-                              )))
-    mousemovechan ([new-mouse-location]
-                   (let [calculated-loc (if drag-offset
-                                          (vplus new-mouse-location drag-offset)
-                                          circle-location)]
-                     (print "CALC" circle-location calculated-loc)
-                     (when drag-offset (print drag-offset) (put! location-chan calculated-loc))
-                     (recur location-tap
-                            calculated-loc
-                            new-mouse-location
-                            drag-offset)))))
+(let [location-tap (tap-to location-mult)
+      mousebutton-tap (tap-to mousebutton-mult)
+      mousemove-tap (tap-to mousemove-mult)]
+  (go-loop [circle-location [300 300]
+            mouse-location [0 0]
+            drag-offset nil]
+    (alt!
+      location-tap ([new-circle-location] (recur new-circle-location
+                                                 mouse-location
+                                                 drag-offset))
+      mousebutton-tap ([new-button]
+                       (let [calculated-drag-offset (and (= 1 new-button)
+                                   (< (dist2 circle-location mouse-location) 100)
+                                   (vminus circle-location mouse-location))]
+                         (put! color-chan (if drag-offset "red" "green"))
+                         (recur circle-location
+                                mouse-location
+                                calculated-drag-offset
+                                )))
+      mousemove-tap ([new-mouse-location]
+                     (let [[x y :as calculated-loc] (if drag-offset
+                                            (vplus new-mouse-location drag-offset)
+                                            circle-location)]
+                       (when drag-offset
+                         (print "CALC" circle-location calculated-loc)
+                         (put! location-chan calculated-loc))
+                       (recur calculated-loc
+                              new-mouse-location
+                              drag-offset))))))
 
 
+(let [location-tap (tap-to horizontal-location-mult)
+      mousebutton-tap (tap-to mousebutton-mult)
+      mousemove-tap (tap-to mousemove-mult)]
+  (go-loop [circle-location [300 300]
+            mouse-location [0 0]
+            drag-offset nil]
+    (alt!
+      location-tap ([new-circle-location] (recur new-circle-location
+                                                 mouse-location
+                                                 drag-offset))
+      mousebutton-tap ([new-button]
+                       (let [calculated-drag-offset (and (= 1 new-button)
+                                   (< (dist2 circle-location mouse-location) 100)
+                                   (vminus circle-location mouse-location))]
+                         (put! color-chan (if drag-offset "red" "green"))
+                         (recur circle-location
+                                mouse-location
+                                calculated-drag-offset
+                                )))
+      mousemove-tap ([new-mouse-location]
+                     (let [calculated-loc (if drag-offset
+                                            (vplus new-mouse-location drag-offset)
+                                            circle-location)]
+                       (when drag-offset
+                         (print "HCALC" circle-location calculated-loc)
+                         (put! horizontal-location-chan calculated-loc))
+                       (recur calculated-loc
+                              new-mouse-location
+                              drag-offset))))))
 
 (defn reset []
   (swap! poly-state (fn [] starting-state))
