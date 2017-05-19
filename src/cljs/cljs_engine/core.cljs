@@ -15,7 +15,9 @@
 (def location-chan (chan))
 (def location-mult (mult location-chan))
 (def horizontal-location-chan (chan))
+(def horizontal-location-chan-o (chan))
 (def horizontal-location-mult (mult horizontal-location-chan))
+(def horizontal-location-o-mult (mult horizontal-location-chan-o))
 (def vertical-location-chan (chan))
 (def vertical-location-mult (mult vertical-location-chan))
 (def locations-chan (chan))
@@ -34,26 +36,29 @@
 ;            (recur tp)))
 
 (let [tp (tap-to location-mult)
-      htp (tap-to horizontal-location-mult)
-      ]
-  (go-loop [x 300
-            y 300
-            hx 300
-            hy 100]
-    (print "T")
+      htp (tap-to horizontal-location-o-mult)]
+  (go-loop [[x y hy] [300 300 100]]
     (alt!
       tp ([[nx ny]]
-        (put! horizontal-location-chan [hx hy])
-        (recur nx ny nx hy))
+        (put! horizontal-location-chan [nx hy])
+        (recur [nx ny hy]))
       htp ([[nhx nhy]]
-        (put! location-chan [x y])
-        (recur nhx y nhx nhy)))))
+        (put! location-chan [nhx y])
+        (put! horizontal-location-chan [nhx hy])
+        (recur [nhx y hy])))))
+; (let [htpo (tap-to horizontal-location-o-mult)]
+;   (go-loop [[x y] [300 100]]
+;     (let [[nx _] (<! htpo) ]
+
+;       (recur [nx y]))))
 ; (go-loop [tp (tap-to horizontal-location-mult)]
 ;          (let [[x y] (<! tp)]
-;            (put! horizontal-location-chan [x 100])
+;            (put! location-chan [x y])
 ;            (recur tp)))
 
 (put! locations-chan [[300 300] [300 100]])
+(put! horizontal-location-chan [300 100])
+(put! location-chan [300 300])
 (go-loop [tp (tap-to location-mult)
           htp (tap-to horizontal-location-mult)
           v1 [300 300]
@@ -64,7 +69,6 @@
            tp ([nv1] (print "A") (recur tp htp nv1 v2))
            htp ([nv2] (print "B") (recur tp htp v1 nv2))
            ))
-
 
 (go-loop [locations-tap (tap-to locations-mult)
           locations [[300 300]]
@@ -112,7 +116,6 @@
 (defn dist2 [v1 v2] (norm2 (vminus v1 v2)))
 
 
-(defonce poly-state (atom starting-state))
 (let [location-tap (tap-to location-mult)
       mousebutton-tap (tap-to mousebutton-mult)
       mousemove-tap (tap-to mousemove-mult)]
@@ -169,17 +172,12 @@
                                             circle-location)]
                        (when drag-offset
                          (print "HCALC" circle-location calculated-loc)
-                         (put! horizontal-location-chan calculated-loc))
+                         (put! horizontal-location-chan-o calculated-loc))
                        (recur calculated-loc
                               new-mouse-location
                               drag-offset))))))
 
-(defn reset []
-  (swap! poly-state (fn [] starting-state))
-  )
-(defn step []
-  ;(swap! poly-state (partial time-update 0)
-  )
+
 
 (defn mousemoveoncanvas [ev]
   (put! mousemovechan [(.-offsetX (.-nativeEvent ev)) (.-offsetY (.-nativeEvent ev))])
