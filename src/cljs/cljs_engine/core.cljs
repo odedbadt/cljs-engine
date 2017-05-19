@@ -19,7 +19,9 @@
 (def horizontal-location-mult (mult horizontal-location-chan))
 (def horizontal-location-o-mult (mult horizontal-location-chan-o))
 (def vertical-location-chan (chan))
+(def vertical-location-chan-o (chan))
 (def vertical-location-mult (mult vertical-location-chan))
+(def vertical-location-o-mult (mult vertical-location-chan-o))
 (def locations-chan (chan))
 (def locations-mult (mult locations-chan))
 (defn tap-to [mlt]
@@ -36,29 +38,39 @@
 ;            (recur tp)))
 
 (let [tp (tap-to location-mult)
-      htp (tap-to horizontal-location-o-mult)]
-  (go-loop [[x y hy] [300 300 100]]
+      htp (tap-to horizontal-location-o-mult)
+      vtp (tap-to vertical-location-o-mult)]
+  (go-loop [[x y hx hy] [300 300 100 100]]
     (alt!
       tp ([[nx ny]]
         (put! horizontal-location-chan [nx hy])
-        (recur [nx ny hy]))
+        (put! vertical-location-chan [hx ny])
+        (recur [nx ny hx hy]))
       htp ([[nhx nhy]]
         (put! location-chan [nhx y])
         (put! horizontal-location-chan [nhx hy])
-        (recur [nhx y hy])))))
+        (recur [nhx y hx hy]))
+      vtp ([[nvx nvy]]
+        (put! location-chan [x nvy])
+        (put! vertical-location-chan [hx nvy])
+        (recur [x nvy hx hy])))))
 
-(put! locations-chan [[300 300] [300 100]])
+(put! locations-chan [[300 300] [300 100] [100 300]])
 (put! horizontal-location-chan [300 100])
+(put! vertical-location-chan [100 300])
 (put! location-chan [300 300])
 (go-loop [tp (tap-to location-mult)
           htp (tap-to horizontal-location-mult)
+          vtp (tap-to vertical-location-mult)
           v1 [300 300]
-          v2 [300 100]]
-         (print "JJ" v1 v2)
-         (put! locations-chan [v1 v2])
+          v2 [300 100]
+          v3 [100 300]]
+         (print "JJ" v1 v2 v3)
+         (put! locations-chan [v1 v2 v3])
          (alt!
-           tp ([nv1] (print "A") (recur tp htp nv1 v2))
-           htp ([nv2] (print "B") (recur tp htp v1 nv2))
+           tp ([nv1] (print "A") (recur tp htp vtp nv1 v2 v3))
+           htp ([nv2] (print "B") (recur tp htp vtp v1 nv2 v3))
+           vtp ([nv3] (print "B") (recur tp htp vtp v1 v2 nv3))
            ))
 
 (go-loop [locations-tap (tap-to locations-mult)
@@ -157,6 +169,35 @@
                               new-mouse-location
                               drag-offset))))))
 
+(let [location-tap (tap-to vertical-location-mult)
+      mousebutton-tap (tap-to mousebutton-mult)
+      mousemove-tap (tap-to mousemove-mult)]
+  (go-loop [circle-location [300 300]
+            mouse-location [0 0]
+            drag-offset nil]
+    (alt!
+      location-tap ([new-circle-location] (recur new-circle-location
+                                                 mouse-location
+                                                 drag-offset))
+      mousebutton-tap ([new-button]
+                       (let [calculated-drag-offset (and (= 1 new-button)
+                                   (< (dist2 circle-location mouse-location) 100)
+                                   (vminus circle-location mouse-location))]
+                         (put! color-chan (if drag-offset "red" "green"))
+                         (recur circle-location
+                                mouse-location
+                                calculated-drag-offset
+                                )))
+      mousemove-tap ([new-mouse-location]
+                     (let [calculated-loc (if drag-offset
+                                            (vplus new-mouse-location drag-offset)
+                                            circle-location)]
+                       (when drag-offset
+                         (print "HCALC" circle-location calculated-loc)
+                         (put! vertical-location-chan-o calculated-loc))
+                       (recur calculated-loc
+                              new-mouse-location
+                              drag-offset))))))
 
 
 (defn mousemoveoncanvas [ev]
