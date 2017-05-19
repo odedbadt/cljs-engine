@@ -46,15 +46,6 @@
         (put! location-chan [nhx y])
         (put! horizontal-location-chan [nhx hy])
         (recur [nhx y hy])))))
-; (let [htpo (tap-to horizontal-location-o-mult)]
-;   (go-loop [[x y] [300 100]]
-;     (let [[nx _] (<! htpo) ]
-
-;       (recur [nx y]))))
-; (go-loop [tp (tap-to horizontal-location-mult)]
-;          (let [[x y] (<! tp)]
-;            (put! location-chan [x y])
-;            (recur tp)))
 
 (put! locations-chan [[300 300] [300 100]])
 (put! horizontal-location-chan [300 100])
@@ -79,17 +70,6 @@
        color-chan ([new-color] (print "CC") (recur locations-tap locations new-color))
        locations-tap ([new-locations] (print "NL" new-locations) (recur locations-tap new-locations color)))
   )
-
-; (go-loop [location-tap (tap-to location-mult)
-;           location [300 300]
-;           color "blue"]
-;   (print "YY2" location)
-;   (put! circle-chan {:locations [location] :color color})
-;   (alt!
-;        color-chan ([new-color] (recur location-tap location new-color))
-;        locations-chan ([new-locations] (recur location-tap location color))
-;        location-tap ([new-location] (recur location-tap new-location color)))
-;   )
 
 (def mousebuttonchan (chan))
 (def mousebutton-mult (mult mousebuttonchan))
@@ -199,24 +179,6 @@
                                                  :onMouseUp mouseupcanvas}]
     ]))
 
-
-
-; (let [node (.getElementById js/document "main-area")]
-;   (defn renderer [full-state]
-;     (.render js/React (main-template full-state) node)
-;     (let [dom (.getElementById js/document "main-canvas")
-;           ctx (.getContext dom "2d")]
-;       (set! (.-fillStyle ctx) "white")
-;       (.fillRect ctx 0 0 600 600)
-;       (doseq [[a b] (detect-edges (:graph full-state)) ]
-;         (let [[xa ya] (project ((:plotted-vertices full-state) a))
-;               [xb yb] (project ((:plotted-vertices full-state) b))]
-;           (.beginPath ctx)
-;           (.moveTo ctx xa ya)
-;           (.lineTo ctx xb yb)
-;           (.stroke ctx))
-;       ))))
-
 (let [node (.getElementById js/document "main-area")]
   (defn renderer [{color :color locations :locations}]
     (.render js/React (main-template) node)
@@ -237,5 +199,3 @@
   (let [circ (<! circle-chan)]
     (renderer circ))
     (recur))
-
-(renderer {:location [300 300] :color "green"})
