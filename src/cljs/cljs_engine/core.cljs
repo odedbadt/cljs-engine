@@ -13,6 +13,7 @@
 (enable-console-print!)
 
 (def location-chan (chan))
+(def location-chan-o (chan))
 (def location-mult (mult location-chan))
 (def horizontal-location-chan (chan))
 (def horizontal-location-chan-o (chan))
@@ -31,6 +32,7 @@
     ))
 (def color-chan (chan))
 (def circle-chan (chan))
+(tap (mult location-chan-o) location-chan)
 
 ; (go-loop [tp (tap-to location-mult)]
 ;          (let [[x y] (<! tp)]
@@ -133,7 +135,7 @@
                                             circle-location)]
                        (when drag-offset
                          (print "CALC" circle-location calculated-loc)
-                         (put! location-chan calculated-loc))
+                         (put! location-chan-o calculated-loc))
                        (recur calculated-loc
                               new-mouse-location
                               drag-offset))))))
