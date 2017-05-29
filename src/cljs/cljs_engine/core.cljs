@@ -12,16 +12,16 @@
 
 (enable-console-print!)
 
-(def location-chan (chan))
-(def location-mult (mult location-chan))
-(def horizontal-location-chan (chan))
-(def horizontal-location-chan-o (chan))
-(def horizontal-location-mult (mult horizontal-location-chan))
-(def horizontal-location-o-mult (mult horizontal-location-chan-o))
-(def vertical-location-chan (chan))
-(def vertical-location-chan-o (chan))
-(def vertical-location-mult (mult vertical-location-chan))
-(def vertical-location-o-mult (mult vertical-location-chan-o))
+; (def location-chan (chan))
+; (def location-mult (mult location-chan))
+; (def horizontal-location-chan (chan))
+; (def horizontal-location-chan-o (chan))
+; (def horizontal-location-mult (mult horizontal-location-chan))
+; (def horizontal-location-o-mult (mult horizontal-location-chan-o))
+; (def vertical-location-chan (chan))
+; (def vertical-location-chan-o (chan))
+; (def vertical-location-mult (mult vertical-location-chan))
+; (def vertical-location-o-mult (mult vertical-location-chan-o))
 (def locations-chan (chan))
 (def locations-mult (mult locations-chan))
 (defn tap-to [mlt]
@@ -65,6 +65,8 @@
 
 (defn ball-control [log-prefix initial-location]
   (let [location-chan (chan)
+        location-mult (mult location-chan)
+        internal-location-chan (chan)
         color-output-chan (chan)
         location-output-chan (chan)
         mousebutton-chan (chan)
@@ -73,7 +75,7 @@
               mouse-location [0 0]
               drag-offset nil]
       (alt!
-        location-chan ([new-circle-location] (recur new-circle-location
+        internal-location-chan ([new-circle-location] (recur new-circle-location
                                                    mouse-location
                                                    drag-offset))
         mousebutton-chan ([new-button]
@@ -98,7 +100,9 @@
                          (recur calculated-loc
                                 new-mouse-location
                                 drag-offset)))))
+    (tap location-mult internal-location-chan)
     {:location-chan location-chan
+     :location-mult location-mult
      :color-output-mult (mult color-output-chan)
      :location-output-mult (mult location-output-chan)
      :mousebutton-chan mousebutton-chan
@@ -135,9 +139,9 @@
         (recur [x nvy hx hy])))))
 
 
-(go-loop [tp (tap-to (:location-output-mult b))
-          htp (tap-to (:location-output-mult hb))
-          vtp (tap-to (:location-output-mult vb))
+(go-loop [tp (tap-to (:location-mult b))
+          htp (tap-to (:location-mult hb))
+          vtp (tap-to (:location-mult vb))
           v1 [300 300]
           v2 [300 100]
           v3 [100 300]]
