@@ -28,14 +28,6 @@
 (def mousemovechan (chan))
 (def mousemove-mult (mult mousemovechan))
 
-
-(def starting-state {
-  :cur-time 0
-  :graph (:graph shapes/dodecahedron)
-  :vertices (:coordinates shapes/dodecahedron)
-  :timer-running true
-  })
-
 (def b (ball/ball-control "B" [300 300]))
 (def vb (ball/ball-control "V" [100 300]))
 (def hb (ball/ball-control "H" [300 100]))
