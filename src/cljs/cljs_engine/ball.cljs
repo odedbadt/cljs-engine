@@ -37,6 +37,7 @@
                                                    mouse-location
                                                    drag-offset))
         mousebutton-chan ([new-button]
+                        (print id new-button)
                          (let [calculated-drag-offset
                                  (and (= 1 new-button)
                                       (< (dist2 circle-location mouse-location) 100)
@@ -47,6 +48,7 @@
                                   calculated-drag-offset
                                   )))
         mousemove-chan ([new-mouse-location]
+                        (print id new-mouse-location)
                        (let [[x y :as calculated-loc] (if drag-offset
                                               (vplus new-mouse-location drag-offset)
                                               circle-location)]

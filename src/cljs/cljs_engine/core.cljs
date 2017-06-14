@@ -2,6 +2,7 @@
   (:require
    [cljsjs.react]
    [cljs-engine.ball :as ball]
+   [cljs-engine.event-router :refer [event_router]]
    [sablono.core :as sab :include-macros true]
    [monet.canvas :as canvas]
    [clojure.core.matrix :as mtrx :include-macros]
@@ -24,20 +25,28 @@
 (def color-chan (chan))
 (def circle-chan (chan))
 (def mousebuttonchan (chan))
-(def mousebutton-mult (mult mousebuttonchan))
+;(def mousebutton-mult (mult mousebuttonchan))
 (def mousemovechan (chan))
-(def mousemove-mult (mult mousemovechan))
-
+;(def mousemove-mult (mult mousemovechan))
 (def b (ball/ball-control "B" [300 300]))
 (def vb (ball/ball-control "V" [100 300]))
 (def hb (ball/ball-control "H" [300 100]))
+(def router event_router
+  {"B" [[300 300] 10] {:movechan (:mousemove-chan b)
+                      :downchan (:mousebutton-chan b)}
+   "V" [[100 300] 10] {:movechan (:mousemove-chan vb)
+                      :downchan (:mousebutton-chan vb)}
+   "H" [[300 100] 10] {:movechan (:mousemove-chan hb)
+                      :downchan (:mousebutton-chan hb)}}
+   mousemovechan
+   mousebuttonchan)
 
-(tap mousebutton-mult (:mousebutton-chan b))
-(tap mousebutton-mult (:mousebutton-chan vb))
-(tap mousebutton-mult (:mousebutton-chan hb))
-(tap mousemove-mult (:mousemove-chan b))
-(tap mousemove-mult (:mousemove-chan vb))
-(tap mousemove-mult (:mousemove-chan hb))
+; (tap mousebutton-mult (:mousebutton-chan b))
+; (tap mousebutton-mult (:mousebutton-chan vb))
+; (tap mousebutton-mult (:mousebutton-chan hb))
+; (tap mousemove-mult (:mousemove-chan b))
+; (tap mousemove-mult (:mousemove-chan vb))
+; (tap mousemove-mult (:mousemove-chan hb))
 (tap (:location-output-mult b) (:location-chan b))
 (tap (:location-output-mult vb) (:location-chan vb))
 (tap (:location-output-mult hb) (:location-chan hb))
