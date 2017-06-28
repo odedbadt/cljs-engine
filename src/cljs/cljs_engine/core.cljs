@@ -4,17 +4,26 @@
    [cljs-engine.ball :as ball]
    [cljs-engine.event-router :refer [event_router]]
    [sablono.core :as sab :include-macros true]
-   [monet.canvas :as canvas]
-   [clojure.core.matrix :as mtrx :include-macros]
-   [clojure.core.matrix.random :as rnd :include-macros]
-   [cljs-engine.shapes :as shapes]
    [cljs.core.async :refer [<! >! chan sliding-buffer put! close! timeout mult tap]])
   (:require-macros
    [cljs.core.async.macros :refer [go-loop go alt!]]))
+; (ns cljs-engine.core
+;   (:require
+;    [cljsjs.react]
+;    [cljs-engine.ball :as ball]
+;    [cljs-engine.event-router :refer [event_router]]
+;    [sablono.core :as sab :include-macros true]
+;    [monet.canvas :as canvas]
+;    [clojure.core.matrix :as mtrx :include-macros]
+;    [clojure.core.matrix.random :as rnd :include-macros]
+;    [cljs-engine.shapes :as shapes]
+;    [cljs.core.async :refer [<! >! chan sliding-buffer put! close! timeout mult tap]])
+;   (:require-macros
+;    [cljs.core.async.macros :refer [go-loop go alt!]]))
 
 (enable-console-print!)
 
-(print 4)
+(print 5)
 
 (def locations-chan (chan))
 (def locations-mult (mult locations-chan))
@@ -27,19 +36,21 @@
 (def mousebuttonchan (chan))
 ;(def mousebutton-mult (mult mousebuttonchan))
 (def mousemovechan (chan))
+(def updatelocations (chan))
 ;(def mousemove-mult (mult mousemovechan))
 (def b (ball/ball-control "B" [300 300]))
 (def vb (ball/ball-control "V" [100 300]))
 (def hb (ball/ball-control "H" [300 100]))
-(def router event_router
-  {"B" [[300 300] 10] {:movechan (:mousemove-chan b)
-                      :downchan (:mousebutton-chan b)}
-   "V" [[100 300] 10] {:movechan (:mousemove-chan vb)
-                      :downchan (:mousebutton-chan vb)}
-   "H" [[300 100] 10] {:movechan (:mousemove-chan hb)
-                      :downchan (:mousebutton-chan hb)}}
+(def router (event_router
+  ["B" [[[300 300] 10] {:movechan (:mousemove-chan b)
+                       :downchan (:mousebutton-chan b)}]
+   "V" [[[100 300] 10] {:movechan (:mousemove-chan vb)
+                       :downchan (:mousebutton-chan vb)}]
+   "H" [[[300 100] 10] {:movechan (:mousemove-chan hb)
+                       :downchan (:mousebutton-chan hb)}]]
+   updatelocations
    mousemovechan
-   mousebuttonchan)
+   mousebuttonchan))
 
 ; (tap mousebutton-mult (:mousebutton-chan b))
 ; (tap mousebutton-mult (:mousebutton-chan vb))

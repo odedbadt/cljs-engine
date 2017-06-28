@@ -2,9 +2,6 @@
   (:require
    [cljsjs.react]
    [sablono.core :as sab :include-macros true]
-   [monet.canvas :as canvas]
-   [clojure.core.matrix :as mtrx :include-macros]
-   [clojure.core.matrix.random :as rnd :include-macros]
    [cljs-engine.shapes :as shapes]
    [cljs.core.async :refer [<! >! chan sliding-buffer put! close! timeout mult tap]])
   (:require-macros
